@@ -1,67 +1,47 @@
 
-const dayInp = document.querySelector(".input-day");
-const monthInp = document.querySelector(".input-month");
-const yearInp = document.querySelector(".input-year");
-
-const dayOtp = document.querySelector("output-day");
-const monthOtp = document.querySelector(".output-month");
-const yearOtp = document.querySelector(".output-year");
-
-const form = document.querySelector("form");
-
-const date = new Date();
-let day = date.getDate();
-let month = 1 + date.getMonth();
-let year = date.getFullYear();
-
+const  inputDay = document.querySelector(".input-day");
+const  inputMonth = document.querySelector(".input-month");
+const  inputYear = document.querySelector(".input-year");
+const  submitBtn = document.querySelector(".btn")
+const  outputDay = document.querySelector(".output-day");
+const  outputMonth = document.querySelector(".output-month");
+const  outputYear = document.querySelector(".output-year");
+const  errorDay = document.querySelector(".error-day");
+const  errorMonth = document.querySelector(".error-month");
+const  errorYear = document.querySelector(".error-year");
 const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-function validate() {
-  const inputs = document.querySelectorAll("input");
-  console.log(inputs)
-  let validator = true;
-  inputs.forEach((i) => {
-    const parent = i.parentElement;
-    if (!i.value) {
-      i.style.borderColor = "red";
-      parent.querySelector("small").innerText = "this field is required.";
-      validator = false;
-    } else if (monthInp.value > 12) {
-        monthInp.style.borderColor = "red";
-        monthInp.parentElement.querySelector("small").innerText = "must be valid month.";
-        validator = false;
-    } else if (dayInp.value > 31) {
-        dayInp.style.borderColor = "red";
-        dayInp.parentElement.querySelector("small").innerText =
-          "must be valid day.";
-        validator = false;
-    } else {
-      i.style.borderColor = "black";
-      parent.querySelector("small").innerText = "";
-      validator = true;
-    }
-  });
-  return validator;
-}
-function handleSubmit(e) {
-  e.preventDefault();
-  if (validate()) {
-    if (dayInp.value > day) {
-      day = day + months[month - 1];
-      month = month - 1;
-    }
-    if (monthInp.value > month) {
-      month = month + 12;
-      year = year - 1;
-    }
+const form = document.querySelector("form");
+const date = new Date();
+const day = date.getDate();
+const month = 1 + date.getMonth();
+const year = date.getFullYear();
 
-    const d = day - dayInp.value;
-    const m = month - monthInp.value;
-    const y = year - yearInp.value;
+console.log(errorDay, errorMonth, errorYear)
 
-    dayOtp.innerHTML = d;
-    monthOtp.innerHTML = m;
-    yearOtp.innerHTML = y;
-  }
-}
+console.log(inputDay, inputMonth, inputYear)
 
-form.addEventListener("submit", handleSubmit);
+inputDay.addEventListener("input", function validateday() {
+    if(inputDay.value > 31  ){
+        errorDay.style.display = "block"
+    }else{
+        errorDay.style.display = "none"
+    }
+})
+inputMonth.addEventListener("input", function validatemonth() {
+    if(inputMonth.value > 12 ){
+        errorMonth.style.display = "block"
+    }else{
+        errorMonth.style.display = "none"
+    }
+})
+inputYear.addEventListener("input", function validateyear() {
+    if(inputYear.value > year ){
+        errorYear.style.display = "block"
+    }else{
+        errorYear.style.display = "none"
+    }
+})
+
+
+
+
