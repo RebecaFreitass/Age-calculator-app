@@ -41,13 +41,9 @@ inputYear.addEventListener("input", function() {
     }
 })
 
-const valueYear = inputYear.value;
+submitBtn.addEventListener("click", britday() )
 
-
-
-submitBtn.addEventListener("click", yearcalculate())
-
-function yearcalculate(){
-    inputYear.value - thisYear
+function britday(){
 
 }
+
